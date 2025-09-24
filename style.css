@@ -35,21 +35,59 @@ body {
     pointer-events: auto; 
     transition: opacity 0.5s ease-out;
     max-width: 90%;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7); /* Gold glow */
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #final-message {
-    background: #e6f7ff; /* Light Blue */
-    color: #4a2a69; /* Dark Purple */
-    border: 5px solid #ffb6c1; /* Light Pink Border */
-    box-shadow: 0 0 30px #ffb6c1; /* Pink Glow */
+    background: #e6f7ff;
+    color: #4a2a69;
+    border: 5px solid #ffb6c1;
+    box-shadow: 0 0 30px #ffb6c1;
     text-shadow: none;
     transform: scale(0.1);
     opacity: 0;
 }
 
+/* This is the key fix: using visibility to hide it from view, but keep it in the flow for animations */
 .hidden {
-    display: none;
+    visibility: hidden;
+}
+
+.message-content {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 15px;
+    text-align: left;
+}
+
+.audio-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    background: #fff;
+    padding: 10px 15px;
+    border-radius: 50px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+#voice-play-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ff69b4;
+    color: white;
+    font-size: 1.5em;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: none;
 }
 
 h1, h2 {
@@ -57,6 +95,7 @@ h1, h2 {
     font-weight: 700;
     color: #ff69b4;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+    text-align: center;
 }
 
 #final-message h1, #final-message p {
@@ -90,7 +129,6 @@ button:hover {
     transform: translateY(-3px);
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     h1, h2 {
         font-size: 1.8em;
@@ -98,10 +136,16 @@ button:hover {
 
     #start-screen, #final-message {
         padding: 20px;
+        max-width: 95%;
     }
 
     button {
         font-size: 1em;
         padding: 8px 20px;
+    }
+
+    .message-content {
+        max-height: 65vh;
+        padding-right: 5px;
     }
 }

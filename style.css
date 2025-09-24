@@ -54,13 +54,14 @@ body {
 }
 
 .hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .message-content {
-    max-height: 50vh; /* Adjust as needed */
+    max-height: 400px;
     overflow-y: auto;
-    padding-right: 15px; /* For scrollbar space */
+    padding-right: 15px;
     text-align: left;
 }
 
@@ -87,7 +88,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: none; /* Override button hover effect */
+    transform: none;
 }
 
 h1, h2 {
@@ -129,7 +130,6 @@ button:hover {
     transform: translateY(-3px);
 }
 
-/* Mobile Responsiveness */
 @media (max-width: 768px) {
     h1, h2 {
         font-size: 1.8em;
@@ -146,6 +146,7 @@ button:hover {
     }
 
     .message-content {
-        max-height: 60vh;
+        max-height: 65vh;
+        padding-right: 5px;
     }
 }

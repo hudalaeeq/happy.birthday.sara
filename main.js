@@ -88,16 +88,29 @@ function animateScene() {
     const startScreen = document.getElementById('start-screen');
     const finalMessageScreen = document.getElementById('final-message');
 
-    // Hide start screen
-    gsap.to('#start-screen', { opacity: 0, duration: 0.5, onComplete: () => {
-        startScreen.classList.add('hidden');
-        document.querySelector('.overlay').style.pointerEvents = 'none';
-    }});
+    // First, hide the start screen with a smooth fade-out.
+    gsap.to('#start-screen', { 
+        opacity: 0, 
+        duration: 0.5, 
+        onComplete: () => {
+            // Once faded out, make it completely disappear.
+            startScreen.style.display = 'none';
+        }
+    });
+
+    // Then, immediately remove the 'hidden' class from the final message.
+    // This makes it visible (but still at 0 opacity) for the animation.
+    finalMessageScreen.classList.remove('hidden');
 
     const tl = gsap.timeline();
     
-    // Show confetti and hearts
-      tl.to(heartsGroup, {
+    // Now, run the animation to fade in and scale up the final message.
+    tl.to(finalMessageScreen, { 
+        opacity: 1, 
+        scale: 1, 
+        duration: 1, 
+    }, ">-0.2") // Start this animation right after the fade out begins.
+      .to(heartsGroup, {
           onStart: () => {
               heartsGroup.visible = true;
               gsap.to(heartsGroup.children, { y: '+=2', opacity: 0, duration: 2, stagger: 0.05, ease: "power1.out" });
@@ -108,13 +121,7 @@ function animateScene() {
               confettiGroup.visible = true;
               gsap.to(confettiGroup.children, { y: '-=10', opacity: 0, duration: 5, stagger: 0.01, ease: "power1.in" });
           }
-          }
-      }, "<")
-    
-    // Show popup with a slight delay
-      .to(finalMessageScreen, { opacity: 1, scale: 1, duration: 1, onStart: () => {
-          finalMessageScreen.classList.remove('hidden');
-      }}, ">-1");
+      }, "<");
 }
 
 // --- Main Animation Loop (rendering) ---

@@ -98,6 +98,7 @@ button:hover {
 
     #start-screen, #final-message {
         padding: 20px;
+        max-width: 95%;
     }
 
     button {

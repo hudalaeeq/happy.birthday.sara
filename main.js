@@ -89,9 +89,9 @@ function animateScene() {
     const finalMessageScreen = document.getElementById('final-message');
 
     // First, hide the start screen with a smooth fade-out.
-    gsap.to('#start-screen', { 
-        opacity: 0, 
-        duration: 0.5, 
+    gsap.to('#start-screen', {
+        opacity: 0,
+        duration: 0.5,
         onComplete: () => {
             // Once faded out, make it completely disappear.
             startScreen.style.display = 'none';
@@ -103,12 +103,12 @@ function animateScene() {
     finalMessageScreen.classList.remove('hidden');
 
     const tl = gsap.timeline();
-    
+
     // Now, run the animation to fade in and scale up the final message.
-    tl.to(finalMessageScreen, { 
-        opacity: 1, 
-        scale: 1, 
-        duration: 1, 
+    tl.to(finalMessageScreen, {
+        opacity: 1,
+        scale: 1,
+        duration: 1,
     }, ">-0.2") // Start this animation right after the fade out begins.
       .to(heartsGroup, {
           onStart: () => {

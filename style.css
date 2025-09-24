@@ -58,8 +58,7 @@ body {
 }
 
 .message-content {
-    /* Updated height for reliable scrolling */
-    max-height: 400px;
+    max-height: 50vh; /* Adjust as needed */
     overflow-y: auto;
     padding-right: 15px; /* For scrollbar space */
     text-align: left;
@@ -147,8 +146,6 @@ button:hover {
     }
 
     .message-content {
-        /* Adjusted for better mobile scrolling */
-        max-height: 65vh; 
-        padding-right: 5px;
+        max-height: 60vh;
     }
 }

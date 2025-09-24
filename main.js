@@ -91,13 +91,19 @@ function animateScene() {
     // Hide start screen
     gsap.to('#start-screen', { opacity: 0, duration: 0.5, onComplete: () => {
         startScreen.classList.add('hidden');
-        document.querySelector('.overlay').style.pointerEvents = 'none';
+        document.querySelector('.overlay').style.pointer-events = 'none';
     }});
 
     const tl = gsap.timeline();
     
-    // Show confetti and hearts
-      tl.to(heartsGroup, {
+    // Show popup with a slight delay
+    tl.to(finalMessageScreen, { 
+        visibility: 'visible',
+        opacity: 1, 
+        scale: 1, 
+        duration: 1, 
+    })
+      .to(heartsGroup, {
           onStart: () => {
               heartsGroup.visible = true;
               gsap.to(heartsGroup.children, { y: '+=2', opacity: 0, duration: 2, stagger: 0.05, ease: "power1.out" });
@@ -108,13 +114,7 @@ function animateScene() {
               confettiGroup.visible = true;
               gsap.to(confettiGroup.children, { y: '-=10', opacity: 0, duration: 5, stagger: 0.01, ease: "power1.in" });
           }
-          }
-      }, "<")
-    
-    // Show popup with a slight delay
-      .to(finalMessageScreen, { opacity: 1, scale: 1, duration: 1, onStart: () => {
-          finalMessageScreen.classList.remove('hidden');
-      }}, ">-1");
+      }, "<");
 }
 
 // --- Main Animation Loop (rendering) ---
@@ -160,7 +160,28 @@ createConfetti();
 createHearts();
 document.getElementById('start-btn').addEventListener('click', animateScene);
 
+const voiceMessage = document.getElementById('voice-message');
+const voicePlayBtn = document.getElementById('voice-play-btn');
+
+voicePlayBtn.addEventListener('click', () => {
+    if (voiceMessage.paused) {
+        voiceMessage.play();
+        voicePlayBtn.textContent = '⏸';
+    } else {
+        voiceMessage.pause();
+        voicePlayBtn.textContent = '▶';
+    }
+});
+
+voiceMessage.addEventListener('ended', () => {
+    voicePlayBtn.textContent = '▶';
+});
+
 document.getElementById('say-thanks-btn').addEventListener('click', () => {
+    // Pause the audio before redirecting
+    voiceMessage.pause();
+    voicePlayBtn.textContent = '▶';
+    
     const message = "Thank you so much for the beautiful birthday surprise! It means a lot to me. 😊";
     const phoneNumber = "+923315484629";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Magical Birthday Card</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="bg"></canvas>
+
+    <div class="overlay">
+        <div id="start-screen">
+            <h1>A Special Birthday Surprise!</h1>
+            <p>A magical message is waiting just for you.</p>
+            <button id="start-btn">Show Wish</button>
+        </div>
+        
+        <div id="final-message" class="hidden">
+            <h1>Happy Birthday, Sara!</h1>
+            <div class="message-content">
+                <div class="audio-player">
+                    <audio id="voice-message" src="voice_message.mp3" preload="auto"></audio>
+                    <button id="voice-play-btn">▶</button>
+                    <span>Play a special voice message!</span>
+                </div>
+                <p>My dearest friend,</p>
+                <p>I hope your day is filled with as much joy and happiness as you bring to everyone around you. Thank you for being such an incredible part of my life. Here's to another year of adventures!</p>
+                <p>With all my love,</p>
+                <p>Huda</p>
+            </div>
+            <button id="say-thanks-btn">Say Thanks</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

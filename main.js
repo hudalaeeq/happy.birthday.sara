@@ -102,10 +102,6 @@ function animateScene() {
         opacity: 1, 
         scale: 1, 
         duration: 1, 
-        onStart: () => {
-            // Remove the 'hidden' class just before animation starts
-            finalMessageScreen.classList.remove('hidden');
-        }
     })
       .to(heartsGroup, {
           onStart: () => {

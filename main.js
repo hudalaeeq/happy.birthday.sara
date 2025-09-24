@@ -108,6 +108,7 @@ function animateScene() {
               confettiGroup.visible = true;
               gsap.to(confettiGroup.children, { y: '-=10', opacity: 0, duration: 5, stagger: 0.01, ease: "power1.in" });
           }
+          }
       }, "<")
     
     // Show popup with a slight delay
@@ -159,7 +160,28 @@ createConfetti();
 createHearts();
 document.getElementById('start-btn').addEventListener('click', animateScene);
 
+const voiceMessage = document.getElementById('voice-message');
+const voicePlayBtn = document.getElementById('voice-play-btn');
+
+voicePlayBtn.addEventListener('click', () => {
+    if (voiceMessage.paused) {
+        voiceMessage.play();
+        voicePlayBtn.textContent = '⏸';
+    } else {
+        voiceMessage.pause();
+        voicePlayBtn.textContent = '▶';
+    }
+});
+
+voiceMessage.addEventListener('ended', () => {
+    voicePlayBtn.textContent = '▶';
+});
+
 document.getElementById('say-thanks-btn').addEventListener('click', () => {
+    // Pause the audio before redirecting
+    voiceMessage.pause();
+    voicePlayBtn.textContent = '▶';
+    
     const message = "Thank you so much for the beautiful birthday surprise! It means a lot to me. 😊";
     const phoneNumber = "+923315484629";
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;

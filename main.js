@@ -90,15 +90,16 @@ function animateScene() {
 
     // Hide start screen
     gsap.to('#start-screen', { opacity: 0, duration: 0.5, onComplete: () => {
-        startScreen.classList.add('hidden');
-        document.querySelector('.overlay').style.pointer-events = 'none';
+        startScreen.style.display = 'none';
+        document.querySelector('.overlay').style.pointerEvents = 'none';
     }});
 
     const tl = gsap.timeline();
     
-    // Show popup with a slight delay
+    // Key fix: Set the display to flex first, then animate
+    finalMessageScreen.style.display = 'flex';
+    
     tl.to(finalMessageScreen, { 
-        visibility: 'visible',
         opacity: 1, 
         scale: 1, 
         duration: 1, 
@@ -174,7 +175,7 @@ voicePlayBtn.addEventListener('click', () => {
 });
 
 voiceMessage.addEventListener('ended', () => {
-    voicePlayBtn.textContent = '▶';
+        voicePlayBtn.textContent = '▶';
 });
 
 document.getElementById('say-thanks-btn').addEventListener('click', () => {

@@ -36,10 +36,6 @@ body {
     transition: opacity 0.5s ease-out;
     max-width: 90%;
     box-shadow: 0 0 30px rgba(255, 215, 0, 0.7); /* Gold glow */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 #final-message {
@@ -50,40 +46,10 @@ body {
     text-shadow: none;
     transform: scale(0.1);
     opacity: 0;
-    display: none; /* Key fix: hide it completely initially */
 }
 
-.message-content {
-    max-height: 400px;
-    overflow-y: auto;
-    padding-right: 15px; /* For scrollbar space */
-    text-align: left;
-}
-
-.audio-player {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    background: #fff;
-    padding: 10px 15px;
-    border-radius: 50px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-#voice-play-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #ff69b4;
-    color: white;
-    font-size: 1.5em;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: none; /* Override button hover effect */
+.hidden {
+    display: none;
 }
 
 h1, h2 {
@@ -91,7 +57,6 @@ h1, h2 {
     font-weight: 700;
     color: #ff69b4;
     text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
-    text-align: center;
 }
 
 #final-message h1, #final-message p {
@@ -133,17 +98,10 @@ button:hover {
 
     #start-screen, #final-message {
         padding: 20px;
-        max-width: 95%;
     }
 
     button {
         font-size: 1em;
         padding: 8px 20px;
-    }
-
-    .message-content {
-        /* Adjusted for better mobile scrolling */
-        max-height: 60vh;
-        padding-right: 5px;
     }
 }

@@ -48,8 +48,10 @@ body {
     opacity: 0;
 }
 
+/* This is the key fix: it hides the element but doesn't remove it from the layout, so GSAP can animate it */
 .hidden {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 h1, h2 {
